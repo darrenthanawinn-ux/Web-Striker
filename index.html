@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WEB-STRIKER: Manhattan Swing</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:system-ui,Segoe UI,sans-serif;color:#fff}
+canvas{display:block}#fx{position:fixed;inset:0;pointer-events:none}
+#mm{position:fixed;right:16px;bottom:16px;border:2px solid #fff6;border-radius:50%;background:#0008}
+#hud{position:fixed;left:20px;bottom:20px;font:700 22px monospace;text-shadow:0 0 6px #000;line-height:1.3}
+#hud small{display:block;font-size:12px;opacity:.7}
+#cross{position:fixed;left:50%;top:50%;width:6px;height:6px;margin:-3px;border-radius:50%;background:#fffa}
+.bar{position:fixed;left:0;right:0;height:10vh;background:#000;display:none;z-index:2}
+#menu{position:fixed;inset:0;background:#000b;display:flex;align-items:center;justify-content:center;z-index:5}
+.pn{width:min(560px,92vw);max-height:90vh;overflow:auto;background:#10131cf0;border:1px solid #e6233a;border-radius:14px;padding:20px 26px}
+h1{margin:0 0 4px;letter-spacing:4px;color:#e6233a}.pn p{opacity:.75;font-size:13px;margin:4px 0 12px}
+label{display:flex;justify-content:space-between;align-items:center;margin:7px 0;font-size:14px;gap:12px}
+select,button{background:#1d2333;color:#fff;border:1px solid #445;border-radius:6px;padding:4px 8px}
+button.go{width:100%;padding:12px;font-size:16px;background:#e6233a;border:0;margin-top:10px;cursor:pointer}
+h3{margin:14px 0 2px;font-size:13px;color:#8fb4ff;letter-spacing:2px}
+</style></head><body>
+<canvas id="fx"></canvas><div id="cross"></div><canvas id="mm" width="150" height="150"></canvas>
+<div id="hud"></div><div class="bar" id="b1" style="top:0"></div><div class="bar" id="b2" style="bottom:0"></div>
+<div id="menu"><div class="pn"><h1>WEB-STRIKER</h1>
+<p>Mouse look · WASD steer · <b>SPACE/LMB</b> jump &amp; hold to swing · <b>SHIFT</b> web-zip · <b>F</b> dive · hold <b>W</b> on a rope to reel in · run into a wall + W to wall-run · ESC = this menu</p>
+<h3>GRAPHICS</h3>
+<label>Quality<select id="q"><option>Low</option><option>Medium</option><option selected>High</option><option>Ultra</option></select></label>
+<label>Time of day<select id="tod"><option selected>Golden</option><option>Midday</option><option>Night</option></select></label>
+<h3>CAMERA &amp; PHYSICS</h3>
+<label>FOV <input id="fov" type="range" min="75" max="110" value="80"></label>
+<label>Camera lag <input id="lag" type="range" min="0" max="1" step=".05" value=".5"></label>
+<label>Swing assist <input id="assist" type="checkbox" checked></label>
+<h3>AUDIO</h3>
+<label>Master <input id="vol" type="range" min="0" max="1" step=".05" value=".6"></label>
+<label>SFX <input id="sfx" type="range" min="0" max="1" step=".05" value=".8"></label>
+<h3>HUD</h3>
+<label>Velocity meter <input id="vel" type="checkbox" checked></label>
+<label>Minimap <input id="map" type="checkbox" checked></label>
+<label>Speed lines <input id="lines" type="checkbox" checked></label>
+<label>Cinematic bars <input id="bars" type="checkbox"></label>
+<h3>KEY BINDINGS (click, then press a key)</h3>
+<label>Swing / jump <button id="kb_swing"></button></label>
+<label>Web-zip <button id="kb_zip"></button></label>
+<label>Dive <button id="kb_dive"></button></label>
+<button class="go" id="go">CLICK TO PLAY / RESUME</button></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="game.js"></script></body></html>
